@@ -1,8 +1,8 @@
-import styles from './page.module.css'
-import Header from './components/Header'
-import Title from './components/Password'
-import NewPassword from './components/NewPassword'
-import Password from './components/Password'
+import styles from './page.module.css';
+import Header from './components/Header';
+import NewPassword from './components/NewPassword';
+import Password from './components/Password';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Home() {
   return (
