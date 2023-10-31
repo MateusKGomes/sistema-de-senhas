@@ -6,9 +6,9 @@ export default function Password(props: { senha: string | number }) {
 
 
     return (
-        <div className='title'>
+        <div>
 
-                <h1>{props.senha}</h1>
+                <h1 className='password'>{props.senha}</h1>
         </div>
     )
 }

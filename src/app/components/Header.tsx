@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <div className='header'>
       <header >
-        <h1>S E N H A</h1>
+        <h1 className='title'>S E N H A</h1>
       </header>
     </div>
   )

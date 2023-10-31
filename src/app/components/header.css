@@ -8,3 +8,7 @@
 header {
     max-width: max-content;
 }
+
+.title {
+  font-size: 100px;
+}

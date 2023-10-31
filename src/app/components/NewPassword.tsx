@@ -13,10 +13,9 @@ export default function NewPassword() {
 
     const handleClick = () => {
         setProntos(password);
+        localStorage.setItem('anteriores', JSON.stringify(previous));
         setPrevious(prev => [prontos, ...prev]);
         setPassword('');
-        localStorage.setItem('anteriores', JSON.stringify(previous));
-        
     }
 
     const handleKeyPress = (e: any) => {
@@ -28,19 +27,17 @@ export default function NewPassword() {
     }
 
     useEffect(() => {
-        const afterRefresh = JSON.parse(localStorage.getItem('anteriores') as any); 
+        const afterRefresh = JSON.parse(localStorage.getItem('anteriores') as any);
         if (afterRefresh) {
-            setPrevious(afterRefresh);
+            setPrevious(previous);
         }
-
-        
     }, []);
 
 
     return (
         <div>
 
-            <div className='container'>
+            <div>
 
                 <label htmlFor="Senha">
                     <input
@@ -60,24 +57,36 @@ export default function NewPassword() {
                     className="btn btn-warning"
                     onClick={handleClick}
                     disabled={isEmpty}
-                    >
+                >
                     Adicionar
                 </button>
 
 
-                <h1>PRONTOS</h1>
+                <div className='section'>
 
-                <Password senha={prontos.toLocaleUpperCase()} />
+                    <div className='container'>
+                        <h1 className='ready'>PRONTO</h1>
+
+                        <Password senha={prontos.toLocaleUpperCase()} />
+
+                    </div>
 
 
+                    <div className='container'>
 
 
-                <h1>
-                    Anteriores
-                </h1>
-                <h1>{previous.join(', ').toLocaleUpperCase()}</h1>
+                        <h1>
+                            ANTERIORES
+                        </h1>
+                        <h1 className='before-password'>{previous.join(', ').toLocaleUpperCase()}</h1>
+
+                    </div>
+
+                </div>
 
             </div>
+
+
         </div>
     )
 }
