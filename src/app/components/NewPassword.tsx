@@ -6,16 +6,22 @@ import Password from './Password';
 export default function NewPassword() {
     const [password, setPassword] = useState('');
     const [previous, setPrevious] = useState<string[]>([]);
-    const [prontos, setProntos] = useState<string>('000');
+    const [prontos, setProntos] = useState<string>('00');
 
-    const isEmpty = password === '';
+    const isEmpty = password.includes(' ') || password === '';
 
 
     const handleClick = () => {
         setProntos(password);
-        localStorage.setItem('anteriores', JSON.stringify(previous));
         setPrevious(prev => [prontos, ...prev]);
+        localStorage.setItem('anteriores', JSON.stringify(previous));
+
         setPassword('');
+    }
+
+    const deletePasswords = () => {
+        setPrevious([]);
+        localStorage.removeItem('anteriores')
     }
 
     const handleKeyPress = (e: any) => {
@@ -27,9 +33,11 @@ export default function NewPassword() {
     }
 
     useEffect(() => {
+
+
         const afterRefresh = JSON.parse(localStorage.getItem('anteriores') as any);
         if (afterRefresh) {
-            setPrevious(previous);
+            setPrevious(afterRefresh);
         }
     }, []);
 
@@ -62,6 +70,17 @@ export default function NewPassword() {
                 </button>
 
 
+                <button
+                    type='button'
+                    className="btn btn-danger"
+                    onClick={deletePasswords}
+                >
+                    Excluir
+                </button>
+
+
+
+
                 <div className='section'>
 
                     <div className='container'>
@@ -81,6 +100,7 @@ export default function NewPassword() {
                         <h1 className='before-password'>{previous.join(', ').toLocaleUpperCase()}</h1>
 
                     </div>
+
 
                 </div>
 
